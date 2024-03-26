@@ -22,10 +22,12 @@ export function isAuthenticated(
             token,
             process.env.JWT_SECRET
         ) as Payload
-
-        console.log(sub);
+        
+        req.user_id = sub
+        
         return next();
         
+
     } catch (error) {
         return res.status(401).json({ error: 'Unauthorized' })
     }
