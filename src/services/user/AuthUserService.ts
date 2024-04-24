@@ -21,7 +21,7 @@ class AuthUserService {
         })
 
         if (!user) {
-            throw new Error("Email/Password incorrect");
+            throw new Error("User does not exists");
         }
 
         const passwordMatch = await compare(password, user.password);
