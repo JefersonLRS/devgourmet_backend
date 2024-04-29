@@ -7,6 +7,17 @@ interface OrderRequest {
 
 class CreateOrderService {
     async execute({ table, name }: OrderRequest) {
+
+        const tableAlreadyExists = await prismaClient.order.findFirst({
+            where: {
+                table
+            }
+        })
+
+        if (tableAlreadyExists) {
+            throw new Error('Essa mesa já existe!');
+        }
+
         const order = await prismaClient.order.create({
             data: {
                 table,
