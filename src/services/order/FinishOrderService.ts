@@ -11,10 +11,15 @@ class FinishOrderService {
                 id: order_id
             },
             data: {
-                status: true
+                status: false
             }
         })
-        return order;
+        const items = await prismaClient.item.deleteMany({
+            where: {
+                order_id
+            }
+        })
+        return order && items;
     }
 }
 

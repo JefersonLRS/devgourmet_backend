@@ -12,6 +12,11 @@ class ListOrderByTableService {
                         name: true,
                         price: true,
                     }
+                },
+                order: {
+                    select: {
+                        table: true
+                    }
                 }
             }
         })
